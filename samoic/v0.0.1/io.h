@@ -78,5 +78,32 @@ public:
     void input_write_ln(){
         putchar('\n');
     }
+    void output_write_integer(ll number_to_write,...){
+        va_list arg;
+        va_start(arg,number_to_write);
+        freopen(file_name_out,"w",stdout);
+        for (int i = 1; i <=number_to_write ; ++i) {
+            printf("%lld ", va_arg(arg,ll));
+        }
+    }
+    void output_write_float(ll decimal_digit,ll number_to_write,...){
+        va_list arg;
+        va_start(arg,number_to_write);
+        freopen(file_name_out,"w",stdout);
+        for (int i = 1; i <=number_to_write ; ++i) {
+            cout<<fixed<<setprecision(decimal_digit)<<va_arg(arg,double)<<" ";
+        }
+    }
+    void output_write_string(ll number_to_write,...){
+        va_list arg;
+        va_start(arg,number_to_write);
+        freopen(file_name_out,"w",stdout);
+        for (int i = 1; i <=number_to_write ; ++i) {
+            printf("%s ", va_arg(arg,char*));
+        }
+    }
+    void output_write_ln(){
+        putchar('\n');
+    }
 };
 #endif //SAMOIC_IO_H
