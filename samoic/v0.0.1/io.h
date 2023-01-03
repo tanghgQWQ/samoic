@@ -6,6 +6,7 @@
 #define SAMOIC_IO_H
 #include <iostream>
 #include <iomanip>
+#include <fstream>
 #include "graph.h"
 using namespace std;
 typedef long long ll;
@@ -39,71 +40,75 @@ public:
         file_name_out[++sz]='t';
     }
     void input_write_integer(ll number_to_write,...){
+        ofstream file(file_name_in,ios::out|ios::app);
         va_list arg;
         va_start(arg,number_to_write);
-        freopen(file_name_in,"w",stdout);
         for (int i = 1; i <=number_to_write ; ++i) {
-            printf("%lld ", va_arg(arg,ll));
+            file<<va_arg(arg,ll)<<" ";
         }
     }
     void input_write_float(ll decimal_digit,ll number_to_write,...){
+        ofstream file(file_name_in,ios::out|ios::app);
         va_list arg;
         va_start(arg,number_to_write);
-        freopen(file_name_in,"w",stdout);
         for (int i = 1; i <=number_to_write ; ++i) {
-            cout<<fixed<<setprecision(decimal_digit)<<va_arg(arg,double)<<" ";
+            file<<fixed<<setprecision(decimal_digit)<<va_arg(arg,double)<<" ";
         }
     }
     void input_write_string(ll number_to_write,...){
+        ofstream file(file_name_in,ios::out|ios::app);
         va_list arg;
         va_start(arg,number_to_write);
-        freopen(file_name_in,"w",stdout);
         for (int i = 1; i <=number_to_write ; ++i) {
-            printf("%s ", va_arg(arg,char*));
+            file<<va_arg(arg,char*)<<" ";
         }
     }
     void input_write_graph(Graph g){
-        freopen(file_name_in,"w",stdout);
-        printf("%lld %lld\n",g.n,g.m);
+        ofstream file(file_name_in,ios::out|ios::app);
+        file<<g.n<<" "<<g.m<<endl;
         for (int i = 0; i <g.g.size() ; ++i) {
             for (auto v:g.g[i].path) {
                 if(!g.have_weight){
+                    file<<g.g[i].u<<" "<<v.v<<endl;
                     printf("%lld %lld\n",g.g[i].u,v.v);
                 }else{
+                    file<<g.g[i].u<<" "<<v.v<<" "<<v.weight<<endl;
                     printf("%lld %lld %lld\n",g.g[i].u,v.v,v.weight);
                 }
             }
         }
     }
     void input_write_ln(){
-        putchar('\n');
+        ofstream file(file_name_in,ios::out|ios::app);
+        file<<endl;
     }
     void output_write_integer(ll number_to_write,...){
+        ofstream file(file_name_out,ios::out|ios::app);
         va_list arg;
         va_start(arg,number_to_write);
-        freopen(file_name_out,"w",stdout);
         for (int i = 1; i <=number_to_write ; ++i) {
-            printf("%lld ", va_arg(arg,ll));
+            file<<va_arg(arg,ll)<<" ";
         }
     }
     void output_write_float(ll decimal_digit,ll number_to_write,...){
+        ofstream file(file_name_out,ios::out|ios::app);
         va_list arg;
         va_start(arg,number_to_write);
-        freopen(file_name_out,"w",stdout);
         for (int i = 1; i <=number_to_write ; ++i) {
-            cout<<fixed<<setprecision(decimal_digit)<<va_arg(arg,double)<<" ";
+            file<<fixed<<setprecision(decimal_digit)<<va_arg(arg,double)<<" ";
         }
     }
     void output_write_string(ll number_to_write,...){
+        ofstream file(file_name_out,ios::out|ios::app);
         va_list arg;
         va_start(arg,number_to_write);
-        freopen(file_name_out,"w",stdout);
         for (int i = 1; i <=number_to_write ; ++i) {
-            printf("%s ", va_arg(arg,char*));
+            file<<va_arg(arg,char*)<<" ";
         }
     }
     void output_write_ln(){
-        putchar('\n');
+        ofstream file(file_name_out,ios::out|ios::app);
+        file<<endl;
     }
 };
 #endif //SAMOIC_IO_H
